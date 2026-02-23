@@ -11,6 +11,16 @@ const validator= require("validator");
     }
     };
 
+const validateEditProfileData=(req)=>{
+    const allowedEditFields=["firstName","lastName","age","gender","photoUrl","about","skills","emailId"];
+
+    const isEditAllowed= Object.keys(req.body).every((field)=>{
+        return allowedEditFields.includes(field);
+    });
+    return isEditAllowed;
+};
+
     module.exports={
         validatorSignupData,
+        validateEditProfileData
     }

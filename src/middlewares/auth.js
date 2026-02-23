@@ -11,6 +11,8 @@ const adminAuth = (req, res, next) => {
     } 
 };
 
+
+// const userAuth kam ka hai iska use hua hai auth.js me , ye jwt token dene ke liye use hua hai .
 const userAuth=async (req, res, next) => {
     try {
         const {token} = req.cookies;
