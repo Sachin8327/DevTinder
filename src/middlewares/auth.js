@@ -1,6 +1,16 @@
 const jwt = require("jsonwebtoken");
 const User = require("../models/user");
 
+const adminAuth = (req, res, next) => {
+    const token = "xyz";
+    const isAuthorised = token === "xyz";
+    if (!isAuthorised){
+        return res.status(401).send("Unauthorized access");
+    }else{
+        next();
+    } 
+};
+
 const userAuth=async (req, res, next) => {
     try {
         const {token} = req.cookies;
@@ -20,24 +30,6 @@ const userAuth=async (req, res, next) => {
     }   
 };
 
-
-
-
-
-
-
-
-
-const adminAuth = (req, res, next) => {
-    const token = "xyz";
-    const isAuthorised = token === "xyz";
-    if (!isAuthorised){
-        return res.status(401).send("Unauthorized access");
-    }else{
-        next();
-    } 
-};
-
 // const  userAuth = (req, res, next) => {
 //     const token = "xyz";
 //     const isAuthorised = token === "ayz";
@@ -49,3 +41,4 @@ const adminAuth = (req, res, next) => {
 // };
 
 module.exports = { adminAuth, userAuth };
+
