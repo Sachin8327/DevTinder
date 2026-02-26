@@ -71,6 +71,11 @@ const userSchema= new mongoose.Schema({
     timestamps:true,
 });
 
+// User.find({firstName:"Yash", lastName:"Thakur"}) ;  //getting error  because of this line so make correction 
+
+// userSchema.index({firstName:1,lastName:1});
+
+
 userSchema.methods.getJWTToken = async function(){
     const user = this;
 

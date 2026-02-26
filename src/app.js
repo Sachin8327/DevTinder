@@ -7,6 +7,7 @@ const { validatorSignupData } = require("./util/validation");
 const bcrypt = require("bcrypt");
 const cookieParser = require("cookie-parser");
 const jwt = require("jsonwebtoken");
+const userRouter = require("./routes/user");
 
 app.use(express.json());
 app.use(cookieParser());
@@ -18,15 +19,7 @@ const requestRouter = require("./routes/requests");
 app.use("/", authRouter);
 app.use("/", profileRouter);
 app.use("/", requestRouter);
-
-
-
- 
-
- 
-
-
- 
+app.use("/", userRouter);
 
 
 app.get("/user", async (req, res) => {
@@ -66,7 +59,6 @@ app.delete("/user", async (req, res) => {
 });
 
 
-
 app.patch("/user/:userId", async (req, res) => {
      const userId = req.params?.userId;
      const data = req.body;
@@ -85,23 +77,6 @@ app.patch("/user/:userId", async (req, res) => {
      }
 });
 
-
-
-
-
-app.use("/admin", adminAuth);
-app.use("/user", userAuth);
-
-app.get("/admin/getAllData", (req, res) => {
-     res.send("All data  sent");
-});
-
-app.get("/admin/deleteUser", (req, res) => {
-     res.send("admin deleted");
-});
-app.get("/user/login", (req, res) => {
-     res.send("User logged in successfully");
-});
 
 connectDB().then(() => {
      console.log("database connection established successfully");
