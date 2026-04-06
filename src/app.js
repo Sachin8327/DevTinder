@@ -8,7 +8,13 @@ const bcrypt = require("bcrypt");
 const cookieParser = require("cookie-parser");
 const jwt = require("jsonwebtoken");
 const userRouter = require("./routes/user");
+const cors = require("cors");
 
+app.use(cors({
+     origin: "http://localhost:5173",
+     credentials: true,
+}
+));
 app.use(express.json());
 app.use(cookieParser());
 
@@ -38,7 +44,7 @@ app.get("/user", async (req, res) => {
 });
 
 
-app.get("/feed", async (req, res) => {
+app.get("/feeed", async (req, res) => {
      try {
           const users = await User.find({});
           res.send(users);
