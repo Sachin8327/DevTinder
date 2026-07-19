@@ -1,15 +1,15 @@
 const jwt = require("jsonwebtoken");
 const User = require("../models/user");
 
-const adminAuth = (req, res, next) => {
-    const token = "xyz";
-    const isAuthorised = token === "xyz";
-    if (!isAuthorised){
-        return res.status(401).send("Unauthorized access");
-    }else{
-        next();
-    } 
-};
+// const adminAuth = (req, res, next) => {
+//     const token = "xyz";
+//     const isAuthorised = token === "xyz";
+//     if (!isAuthorised){
+//         return res.status(401).send("Unauthorized access");
+//     }else{
+//         next();
+//     } 
+// };
 
 
 // const userAuth kam ka hai iska use hua hai auth.js me , ye jwt token dene ke liye use hua hai .
@@ -42,5 +42,5 @@ const userAuth=async (req, res, next) => {
 //     } 
 // };
 
-module.exports = { adminAuth, userAuth };
+module.exports = { userAuth };
 
