@@ -10,6 +10,9 @@ const cookieParser = require("cookie-parser");
 const jwt = require("jsonwebtoken");
 const userRouter = require("./routes/user");
 const cors = require("cors");
+const chatRouter = require("./routes/chat");
+const initializeSocket = require("./util/socket");
+const http = require("http");
 
 app.use(cors({
      origin: "http://localhost:5173",
@@ -27,6 +30,7 @@ app.use("/", authRouter);
 app.use("/", profileRouter);
 app.use("/", requestRouter);
 app.use("/", userRouter);
+app.use("/", chatRouter);
 
 
 app.get("/user", async (req, res) => {
@@ -87,9 +91,14 @@ app.patch("/user/:userId", async (req, res) => {
 
 connectDB().then(() => {
      console.log("database connection established successfully");
-     app.listen(7777, () => {
+     const server = http.createServer(app);
+
+     initializeSocket(server);
+
+     server.listen(7777, () => {
           console.log("Server is running on port 7777");
      });
+
 }).catch((err) => {
      console.log("database connection cann't be established");
 });
