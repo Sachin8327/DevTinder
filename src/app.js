@@ -15,7 +15,10 @@ const initializeSocket = require("./util/socket");
 const http = require("http");
 
 app.use(cors({
-     origin: "http://localhost:5173",
+     origin: [
+    "http://localhost:5173",
+    "http://localhost:5174"
+  ],
      credentials: true,
 }
 ));
